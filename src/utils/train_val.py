@@ -44,6 +44,7 @@ def train(train_loader, val_loader, net, Param, folder_path:str):
         lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=Param['LRScheduler_factor'], 
                                                                   patience=Param['LRScheduler_patience'], min_lr=Param['LRScheduler_min_lr'])
     bestmodel_path = folder_path + f'Best_{net.name}.pkl'
+    lastmodel_path = folder_path + f'Last_{net.name}.pkl'
     
     epoch_start_time = time.time()
     for epoch in range(EPOCH):
@@ -84,12 +85,15 @@ def train(train_loader, val_loader, net, Param, folder_path:str):
         val_losses.append(val_loss / len(val_loader.dataset))
         val_accuracy.append(val_correct / len(val_loader.dataset))
         
-        if (val_losses[epoch] < best_loss) and epoch>(EPOCH/2):
+        if (val_losses[epoch] < best_loss) and epoch>(EPOCH/4):
             best_acc = val_accuracy[epoch]
             best_loss = val_losses[epoch]
             best_epoch = epoch
             torch.save(model.eval(), bestmodel_path)
-        
+            
+        if epoch == (EPOCH-1):
+            torch.save(model.eval(), lastmodel_path)
+            
         epoch_end_time = time.time()
         time_interval = epoch_end_time - epoch_start_time
         print(
@@ -148,7 +152,7 @@ def test(test_loader, model, folder_path:str, plot_name:str):
     
     logits = np.concatenate(logits, axis=0)
     y_true = np.concatenate(y_true, axis=0)
-    y_pred = np.concatenate(y_pred, axis=0) # [ np[1, 2, 3, 4, ... 16], np[], np[] .... ]  -> [1, 2, 3, 4, ... 16, 17, 18, ... 32 ...] 
+    y_pred = np.concatenate(y_pred, axis=0)    
     CM = confusion_matrix(y_true, y_pred)
     class_name = ['COVID', 'Non-COVID']
     print(classification_report(y_true, y_pred, target_names=class_name, digits=4))

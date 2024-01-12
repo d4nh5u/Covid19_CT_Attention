@@ -37,7 +37,7 @@ def plot_train_curve(epoch, train_list, valid_list, curve_type, title,
     plt.ylim(-0.05, 1.05)
   elif curve_type == 'Loss':
     plt.ylabel('Loss', fontsize=font_size+8, fontweight='bold')
-    plt.ylim(0, 5)
+    plt.ylim(0, 0.3)
   else:
     raise ValueError('curve_type only is Accuracy or Loss')
 
