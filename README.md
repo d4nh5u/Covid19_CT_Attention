@@ -16,7 +16,7 @@
 - [***Chia-Chun Hsu (d4nh5u)***](https://github.com/d4nh5u)
   - Department of BioMedical Engineering (**BME**)
   - National Cheng Kung University (**NCKU**)
-  - Feel free to reach out <a href="f94099011@gs.ncku.edu.tw">![Email](https://img.shields.io/badge/-Email-blue?style=flat-square&logo=Gmail)</a>
+  - Feel free to reach out <a href="mailto:f94099011@gs.ncku.edu.tw">![Email](https://img.shields.io/badge/-Email-blue?style=flat-square&logo=Gmail)</a>
 - [***Chao-Chun Cheng***](https://github.com/ChengChaoChun)
   - Department of Computer Science and Information Engineering (**CSIE**)
   - National Cheng Kung University (**NCKU**)
@@ -36,5 +36,3 @@ This project makes use of the [**COVID-19-CT**](https://github.com/UCSD-AI4H/COV
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 
 Copyright (c) 2024 d4nh5u (Chia-Chun Hsu)
-
-
